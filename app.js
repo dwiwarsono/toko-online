@@ -11,6 +11,11 @@ app.set("view engine", "ejs");
 // Setup public folder
 app.use(express.static(path.join(__dirname, "public")));
 
+// Setup index
+app.get("/", function(req, res){
+  res.send("This is a index");
+})
+
 // Setup server
 var port = 3000;
 app.listen(port, function() {
