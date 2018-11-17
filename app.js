@@ -13,7 +13,7 @@ app.use(express.static(path.join(__dirname, "public")));
 
 // Setup index
 app.get("/", function(req, res){
-  res.send("This is a index");
+  res.send("This is a index show");
 })
 
 // Setup server
