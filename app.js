@@ -21,16 +21,13 @@ app.set("view engine", "ejs");
 // Setup public folder
 app.use(express.static(path.join(__dirname, "public")));
 
-// Setup index
-app.get("/", function(req, res){
-  res.sendFile("This is a index show");
-});
+// Set Router
+var pages = require("./routes/pages.js");
+var adminPages = require("./routes/admin_pages.js");
 
-// Setup index with Echma Script 6 ES6
-// app.get('/', (req, res) => {
-//   res.send('Hello World')
-// })
-
+// Redirect
+app.use("/", pages);
+app.use("/admin/pages", adminPages);
 
 // Setup server
 var port = 3000;
