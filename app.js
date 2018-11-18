@@ -2,6 +2,8 @@ var express = require("express");
 var path = require("path");
 var mongoose = require("mongoose");
 var config = require("./config/database");
+var bodyParser = require("body-parser");
+var session = require("express-session");
 
 // Initial App
 var app = express();
@@ -28,6 +30,20 @@ var adminPages = require("./routes/admin_pages.js");
 // Redirect
 app.use("/", pages);
 app.use("/admin/pages", adminPages);
+
+/* MIDDLEWARE */
+// Setup Body Parser middleware
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+
+// Setup session middleware
+app.use(
+  session({
+  secret: 'keyboard cat',
+  resave: false,
+  saveUninitialized: true,
+  cookie: { secure: true }
+}));
 
 // Setup server
 var port = 3000;
